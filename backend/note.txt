@@ -1,0 +1,4 @@
+DatabaseName=Samyog
+collection_names=[events,]
+cluster_name=samyogBackend
+project_name=samyog
