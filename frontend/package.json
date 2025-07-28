@@ -1,7 +1,23 @@
 {
-  "name": "college-management-frontend",
-  "version": "0.1.0",
+  "name": "edumanage-frontend",
+  "version": "1.0.0",
   "private": true,
+  "description": "Frontend for EduManage - College Management System",
+  "homepage": "https://your-app-name.netlify.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/edumanage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/edumanage/issues"
+  },
+  "keywords": [
+    "react",
+    "college-management",
+    "education",
+    "frontend",
+    "tailwindcss"
+  ],
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -13,11 +29,21 @@
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.0"
   },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
+    "web-vitals": "^3.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test:coverage": "react-scripts test --coverage --watchAll=false",
+    "eject": "react-scripts eject",
+    "analyze": "npm run build && npx serve -s build",
+    "deploy": "npm run build && netlify deploy --prod --dir=build",
+    "preview": "npm run build && netlify deploy --dir=build"
   },
   "eslintConfig": {
     "extends": [
@@ -37,5 +63,11 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:5001"
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/index.js",
+      "!src/reportWebVitals.js"
+    ]
+  }
 }

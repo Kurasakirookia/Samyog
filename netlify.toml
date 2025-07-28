@@ -1,0 +1,121 @@
+# ============ NETLIFY CONFIGURATION ============
+# Configuration file for Netlify deployment
+# Optimized for React single-page application
+
+[build]
+  # Base directory for the build
+  base = "frontend"
+  
+  # Build command
+  command = "npm run build"
+  
+  # Directory to publish (output of build)
+  publish = "build"
+
+[build.environment]
+  # Node.js version for build
+  NODE_VERSION = "18"
+  
+  # NPM version for build
+  NPM_VERSION = "9"
+
+# ============ REDIRECTS ============
+# Handle client-side routing for React Router
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# API proxy for development (optional)
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-backend-url.com/api/:splat"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+
+# ============ HEADERS ============
+# Cache static assets
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache JavaScript and CSS files
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Security headers for all pages
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# ============ FUNCTIONS (if needed) ============
+[functions]
+  directory = "netlify/functions"
+
+# ============ FORM HANDLING ============
+# Enable form handling for contact forms
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+# ============ PLUGINS ============
+# Netlify plugins for enhanced functionality
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+  
+  [plugins.inputs]
+    buildDir = "build"
+
+# Performance and SEO optimization
+[[plugins]]
+  package = "netlify-plugin-lighthouse"
+  
+  [plugins.inputs]
+    audits = ["performance", "accessibility", "best-practices", "seo"]
+
+# ============ CONTEXT-SPECIFIC CONFIGS ============
+# Production environment
+[context.production.environment]
+  NODE_ENV = "production"
+  REACT_APP_ENV = "production"
+
+# Deploy preview environment
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
+  REACT_APP_ENV = "preview"
+
+# Branch deploy environment
+[context.branch-deploy.environment]
+  NODE_ENV = "development"
+  REACT_APP_ENV = "development"
+
+# ============ EDGE FUNCTIONS ============
+# Define edge functions if needed
+[[edge_functions]]
+  function = "auth-check"
+  path = "/admin/*"
