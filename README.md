@@ -60,8 +60,8 @@ Password: user123
 - **Bcrypt**: Password hashing
 
 ### Deployment
-- **Frontend**: Netlify (Automatic deployments)
-- **Backend**: Your preferred hosting (Heroku, Railway, DigitalOcean)
+- **Frontend**: Netlify, GitHub Pages, or Vercel
+- **Backend**: Heroku, Railway, DigitalOcean, or Render
 - **Database**: MongoDB Atlas (Cloud database)
 - **File Storage**: Cloudinary or AWS S3
 
@@ -145,7 +145,16 @@ edumanage/
 
 ## 🌍 Deployment Guide
 
-### Deploy Frontend to Netlify
+### Deploy Frontend
+
+#### Option 1: GitHub Pages (Free)
+```bash
+# Quick deployment to GitHub Pages
+./deploy-github.sh "Initial deployment"
+```
+📖 **Detailed Guide:** See [GITHUB_PAGES_SETUP.md](GITHUB_PAGES_SETUP.md)
+
+#### Option 2: Netlify
 
 #### Option 1: GitHub Integration (Recommended)
 

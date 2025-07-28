@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "Frontend for EduManage - College Management System",
-  "homepage": "https://your-app-name.netlify.app",
+  "homepage": "https://yourusername.github.io/edumanage",
   "repository": {
     "type": "git",
     "url": "https://github.com/yourusername/edumanage.git"
@@ -33,7 +33,8 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
-    "web-vitals": "^3.1.0"
+    "web-vitals": "^3.1.0",
+    "gh-pages": "^6.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -42,8 +43,10 @@
     "test:coverage": "react-scripts test --coverage --watchAll=false",
     "eject": "react-scripts eject",
     "analyze": "npm run build && npx serve -s build",
-    "deploy": "npm run build && netlify deploy --prod --dir=build",
-    "preview": "npm run build && netlify deploy --dir=build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
+    "deploy:netlify": "npm run build && netlify deploy --prod --dir=build",
+    "preview:netlify": "npm run build && netlify deploy --dir=build"
   },
   "eslintConfig": {
     "extends": [
