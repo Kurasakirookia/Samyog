@@ -1,0 +1,38 @@
+/* ScrollText.css */
+body {
+
+  margin: 0;
+  background: transparent;
+  font-family: sans-serif;
+}
+
+.scroll-wrapper {
+  width: 100%;
+  margin:6vh 0px;
+  height: 150vh; /* Ensures enough vertical scroll */
+  position: relative;
+  overflow: hidden;
+  transform: rotate(-3deg);
+}
+
+
+.text-line {
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  position: fixed;
+  width: 100vw;
+  font-size: 20vw;
+  font-weight: bold;
+  white-space: nowrap;
+  color: #EFEEEA;
+  line-height: 1;
+  will-change: transform;
+  pointer-events: none;
+}
+
+.left-to-right {
+  top: 20%;
+}
+
+.right-to-left {
+  top: 55%;
+}

@@ -1,0 +1,141 @@
+.about_us_container {
+  position: relative;
+  height: auto;
+  width: 100%;
+  background: radial-gradient(
+    ellipse at bottom,
+    #474753 5%,        /* bright purple/pink core */
+    #292932 60%,       /* dark fade middle */
+    #0b0b0f 100%,       /* darker edges */
+    transparent 100%   /* optional smooth end */
+  );
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+ 
+}
+
+.about_hero{
+    /* margin-top: ; */
+    width: 95%;
+    height: 101vh;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+      /* overflow-y:scroll; */
+}
+.about_hero_text{
+    width: 70%;
+    font-size: 65px;
+}
+.vision{
+    padding: 30px 0px;
+    display: flex;
+    align-items: center;
+    justify-content:flex-start;
+    gap: 5vw;
+}
+.vision>p{
+    max-width: 27%;
+}
+
+.about_ise{
+    padding-top: 10vh;
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+
+}
+.ise_text_container{
+    padding-top: 8vh;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.card_display{
+    padding: 10vh 0px;
+}
+
+.teachers_info_numbers{
+    overflow: hidden;
+    padding-top: 7vh;
+    width: 95%;
+    height: 60vh;
+    display: flex;
+    align-items: flex-start;
+
+    justify-content: center;
+}
+.stats-container{
+    
+    display: flex;
+
+    flex-wrap: wrap;
+    width: 75%;
+    
+    gap: 7vw;
+    justify-content: center;
+    
+
+}
+.stat-box{
+    max-width: 15%;
+    max-height: 15%;
+    min-width: 15%;
+    min-height: 15%;
+}
+
+.teachers_hod_coordinators{
+    width: 95%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-around;
+
+}
+.teacher_container{
+    background-color:#8e8e94;
+    width: 45%;
+    height: 60vh;
+    border-radius: 12vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 2vh;
+    justify-content: center;
+    align-items: center;
+}
+.teacher_des{
+    height: 50%;
+    width: 85%;
+    border: 1px solid black;
+}
+.teacher_img{
+    height: 25%;
+    width: 85%;
+    border: solid 1px black;
+    display: flex;
+    align-items: center;
+    /* justify-content:; */
+    /* padding: 0px 10px; */
+    
+}
+.teacher_icon_img{
+    margin-left: 2vw;
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 50%;
+
+}
+.teacher_hero_section{
+    width: 50%;
+    text-align: right;
+     padding: 40px;
+}
+.teacher_hero_des{
+    /* padding: 40px; */
+    padding: 20px 0px;
+    text-align: right;
+}

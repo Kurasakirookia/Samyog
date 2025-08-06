@@ -11,6 +11,10 @@ const teacherSchema = mongoose.Schema(
       type: String,
       required: [true, "Branch is required"],
     },
+    description:{
+      type: String,
+      required: [true, "Branch is required"],
+    },
     designation: {
       type: String,
       required: [true, "Designation is required"],

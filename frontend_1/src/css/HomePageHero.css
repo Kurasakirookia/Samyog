@@ -1,0 +1,69 @@
+body{
+    /* background-color: #000; */
+    position: relative;
+    z-index: -1;
+    color: #EFEEEA;
+}
+.texts{
+    color: #EFEEEA;
+}
+@font-face {
+  font-family: 'samyog';
+  src: url('../OriginTech\ personal\ use.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+#home_container{
+    height: 95vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home_content{
+    width: 60%;
+    height:50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+    flex-direction: column;
+    flex-wrap: nowrap;
+    background-color: transparent;
+}
+/* #home_samyog_logo{
+    font-family: samyog;
+    margin:0px;
+    padding: 0px;
+    color: #EFEEEA;
+    font-size: 220px;
+
+} */
+#home_samyog_logo{
+    margin: 0px;
+    padding: 0px;
+    width: 85%;
+    height: auto;
+    object-fit: contain;
+}
+
+.text_container.top{
+
+     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 150px;
+    padding-bottom: 10px;
+    
+    width: 99%;
+}
+.text_container.bottom{
+  display: flex;
+    align-items: center;
+    
+    width: 99%;
+    justify-content: flex-end;
+    padding-top: 10px;
+    padding-right: 180px;
+}

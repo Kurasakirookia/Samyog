@@ -1,0 +1,94 @@
+.teacher-slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  max-width: 50vw;
+  /* margin: 0 auto; */
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+
+.arrow-button {
+  color: #f0f0f0;
+  background: none;
+  border: 2px solid #333;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.arrow-button:hover {
+  color: #000;
+  background-color: #f0f0f0;
+}
+
+
+.info_container{
+  width: 98%;
+}
+.teacher_card {
+  flex: 1;
+  padding: 1.5rem;
+  background: #fafafa;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  position: relative;
+  min-height: 70%;
+  max-width: 80%;
+  
+}
+
+.teacher_info {
+  
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.teacher_info h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.teacher_info p {
+  margin: 0.25rem 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.teacher_des{
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: flex-end;
+}
+.teacher_des_info{
+  width: 85%;
+  text-align: right;
+}
+.image-stack {
+  display: flex;
+  gap: 0.5rem;
+  justify-content:flex-start;
+  align-items: center;
+  position: absolute;
+  bottom: 1rem;
+  /* left: 0;
+  right: 0; */
+}
+
+.circle-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #000;
+  margin: 0 auto;
+}

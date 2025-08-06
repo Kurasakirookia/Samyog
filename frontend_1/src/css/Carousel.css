@@ -1,0 +1,90 @@
+body{
+    /* background-color: #fff; */
+}
+
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  height: 70vh;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+.carousel-item {
+  border: #EFEEEA 1px solid;
+  width: 250px;
+  height: 350px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 10px;
+  transition: transform 0.5s ease, opacity 0.5s;
+  cursor: pointer;
+  opacity: 0.5;
+  position: relative;
+  opacity: 0;
+    animation: fadeIn 0.4s forwards;
+     
+
+
+}
+    
+    @keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+.carousel-item.center {
+  transform: scale(1.1);
+  opacity: 1;
+  z-index: 3;
+}
+
+.carousel-item.left,
+.carousel-item.right {
+  transform: scale(0.9);
+  opacity: 0.8;
+  z-index: 2;
+}
+
+.carousel-item.hidden {
+  transform: scale(0.7);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.carousel-overlay {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  text-align: center;
+  color: white;
+  font-weight: bold;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.more_container{
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right:10%;
+}
+.more_container>.more{
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius:5vh;
+    background-color:#EFEEEA;
+    color: #000;
+}
+.more_container>.more:hover{
+    text-decoration: underline;
+     background-color:#000;
+    color: #EFEEEA;
+
+
+}

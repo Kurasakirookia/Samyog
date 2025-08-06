@@ -1,0 +1,60 @@
+body>.text{
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    position: relative;
+}
+#Navbar_container{
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    
+    background: rgba(255, 255, 255, 0); /* transparent white */
+    backdrop-filter: blur(15px);          /* main blur effect */
+    -webkit-backdrop-filter: blur(12px);  /* Safari support */
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+
+    
+}
+
+.nav_box_1{
+    padding-left: 3vw;
+}
+#nav_logo{
+    width: 4vw;
+    object-fit: contain;
+    
+
+}
+
+.option{
+    all: unset;
+    text-decoration: none;
+    marker: none;
+}
+#options{
+    padding: 0px;
+    margin: 0px;
+    display: flex;
+    gap: 2%;
+    justify-content: flex-end;
+    padding-right: 3vw;
+
+}
+
+#options>.option>.textl{
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color:#EFEEEA ;
+}
+
+.nav_box{
+    width:33.33%;
+}

@@ -10,7 +10,7 @@ const jwt = require("jsonwebtoken");
 // @route   POST /api/auth/register
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-  const { name, email, password, role } = req.body;
+  const { name, email, password, } = req.body;
 
   if (!name || !email || !password) {
     res.status(400);
@@ -33,7 +33,7 @@ const registerUser = asyncHandler(async (req, res) => {
     name,
     email,
     password: hashedPassword,
-    role, // optional, will default to 'user'
+    // role, // optional, will default to 'user'
   });
 
   if (user) {
@@ -53,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
 // @route   POST /api/auth/login
 // @access  Public
 const loginUser = asyncHandler(async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password} = req.body;
   if(!email||!password){
     res.status(400);
     throw new Error("fill the email and password")
@@ -86,7 +86,7 @@ const currentUser = asyncHandler(async (req, res) => {
 // Generate JWT
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "15m",
+    expiresIn: "1d",
   });
 };
 

@@ -20,55 +20,37 @@ const getAllEvents = asyncHandler(async (req, res) => {
 // @desc    Get all teachers for public view
 // @route   GET /api/public/teachers
 // @access  Public
-const getAllTeachers = asyncHandler(async (req, res) => {
-  const teachers = await Teacher.find()
-    .select('-contactNumber -email') // Hide sensitive info from public
-    .lean(); // Convert to plain JS objects for manipulation
 
-  // Define designation hierarchy for sorting (highest rank first)
+const getAllTeachers = asyncHandler(async (req, res) => {
+  const teachers = await Teacher.find();
+
+  // Define the designation priority
   const designationOrder = {
-    'Principal': 1,
-    'Vice Principal': 2,
-    'Dean': 3,
-    'Associate Dean': 4,
-    'HOD': 5,
-    'Head of Department': 5,
-    'Professor': 6,
-    'Associate Professor': 7,
-    'Assistant Professor': 8,
-    'Lecturer': 9,
-    'Senior Lecturer': 7.5,
-    'Junior Lecturer': 10,
-    'Instructor': 11
+    "HOD": 1,
+    "Professor": 2,
+    "Associate Professor": 3,
+    "Assistant Professor": 4,
+    "Non-teaching": 5
   };
 
-  // Sort teachers by designation hierarchy, then by name
+  // Sort teachers based on designation rank
   const sortedTeachers = teachers.sort((a, b) => {
-    const aOrder = designationOrder[a.designation] || 12; // Default to lowest if not found
-    const bOrder = designationOrder[b.designation] || 12;
-    
-    if (aOrder !== bOrder) {
-      return aOrder - bOrder; // Higher rank first (lower number)
-    }
-    
-    // If same designation, sort alphabetically by name
-    return a.name.localeCompare(b.name);
-  });
+    const aRankKey = Object.keys(designationOrder).find(key =>
+      a.designation?.toLowerCase().includes(key.toLowerCase())
+    );
+    const bRankKey = Object.keys(designationOrder).find(key =>
+      b.designation?.toLowerCase().includes(key.toLowerCase())
+    );
 
-  // Group teachers by branch for better organization
-  const teachersByBranch = sortedTeachers.reduce((acc, teacher) => {
-    if (!acc[teacher.branch]) {
-      acc[teacher.branch] = [];
-    }
-    acc[teacher.branch].push(teacher);
-    return acc;
-  }, {});
+    const aRank = designationOrder[aRankKey] || 99;
+    const bRank = designationOrder[bRankKey] || 99;
+
+    return aRank - bRank;
+  });
 
   res.status(200).json({
     success: true,
-    count: sortedTeachers.length,
-    data: sortedTeachers,
-    byBranch: teachersByBranch
+    data: sortedTeachers
   });
 });
 

@@ -1,0 +1,112 @@
+.form_container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ background: radial-gradient(
+    ellipse at bottom,
+    #5f5f6c 10%,        /* bright purple/pink core */
+    #292932 60%,       /* dark fade middle */
+    #0b0b0f 100%,       /* darker edges */
+    transparent 100%   /* optional smooth end */
+  );
+  padding: 2rem;
+}
+
+._login_form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  background-color: #fff;
+  padding: 2.5rem 3rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+}
+
+._login_form:hover {
+  transform: translateY(-5px);
+}
+
+._login_form input {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 1px solid #e2e4e8;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+._login_form input:focus {
+  outline: none;
+  border-color: #161C2E;
+  /* box-shadow: 0 0 0 3px rgba(72, 77, 82, 0.2); */
+}
+
+._login_form button {
+  padding: 0.8rem 1rem;
+  background-color:#161C2E;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+._login_form button:hover {
+  background-color:#585c66;
+  transform: translateY(-2px);
+}
+
+._login_form button:active {
+  transform: scale(0.98);
+}
+
+.password_field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password_field input {
+  flex: 1;
+  padding-right: 40px; /* space for eye icon */
+}
+
+.toggle_eye {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  color: #555;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.toggle_eye:hover {
+  color: #000;
+}
+
+.role-select {
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 8px;
+  background-color: #1e1e2f;
+  color: #ffffff;
+  border: 1px solid #444;
+  outline: none;
+  transition: border 0.3s ease, background 0.3s ease;
+  width: 100%;
+  max-width: 300px;
+  appearance: none; /* hides default arrow in some browsers */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.role-select:focus {
+
+  border: 1px solid #242427;
+  background-color: #212125;
+}

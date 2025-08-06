@@ -1,3 +1,0 @@
-black:121435
-white:EFEEEA
-orange:F05D23

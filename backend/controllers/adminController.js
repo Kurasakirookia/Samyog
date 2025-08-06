@@ -25,25 +25,35 @@ const getOneEvent = asyncHandler(async (req, res) => {
 
 const createEvent = asyncHandler(async (req, res) => {
   console.log("Incoming request body:", req.body);
-  const {title,description,date,venue,image,branch,createdBy}=req.body;
-  if(!title ||!date){
+  const {title,description,startdate,enddate,venue,branch,createdBy}=req.body;
+
+ 
+  if(!title ||!startdate||!enddate){
     res.status(400);
     throw new Error("title and dates are needed");
+  }
+    // const imagePath = req.file ? req.file.path : null;
+    const imagePath = req.file ? `uploads/${req.file.filename}` : null;
+
+  if (!imagePath) {
+    return res.status(400).json({ message: "Image upload failed." });
   }
   const event =await Event.create(
     {
       title,
       description,
-      date,
+      startdate,
+      enddate,
       venue,
-      image,
+      image:imagePath,
       branch,
       createdBy:req.user?.id||null,
     }
   );
   
       // 
-    res.status(201).json(event);
+    await event.save();
+  res.status(201).json({ message: "Event created", event });
 });
 
 // @desc    Update event
@@ -52,8 +62,8 @@ const createEvent = asyncHandler(async (req, res) => {
 
 const updateEvent = asyncHandler(async (req, res) => {
   const { id } = req.params;
+  const { title, description, startdate, enddate, venue, branch } = req.body;
 
-  // 1. Find event by ID
   const event = await Event.findById(id);
 
   if (!event) {
@@ -61,17 +71,24 @@ const updateEvent = asyncHandler(async (req, res) => {
     throw new Error("Event not found");
   }
 
-  // 2. Update event fields
-  const updatedEvent = await Event.findByIdAndUpdate(id, req.body, {
-    new: true,           // return the updated document
-    runValidators: true, // ensure validation rules are respected
-  });
+  event.title = title || event.title;
+  event.description = description || event.description;
+  event.startdate = startdate || event.startdate;
+  event.enddate = enddate || event.enddate;
+  event.venue = venue || event.venue;
+  event.branch = branch || event.branch;
+
+if (req.file) {
+  event.image = `uploads/${req.file.filename}`;
+}
+
+
+  const updatedEvent = await event.save();
 
   res.status(200).json({
     message: "Event updated successfully",
     event: updatedEvent,
   });
-
 });
 
 // @desc    Delete event
@@ -124,22 +141,26 @@ const getOneTeacher = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const createTeacher = asyncHandler(async (req, res) => {
   console.log("Incoming request body:", req.body);
-  const { name, branch, designation, email, image, contactNumber } = req.body;
+  const { name,branch,description,designation,email,contactNumber } = req.body;
   
-  if (!name || !branch || !designation) {
+  if (!name || !description || !designation) {
     res.status(400);
     throw new Error("Name, branch and designation are required");
   }
-  
+  const imagePath = req.file ? `uploads/${req.file.filename}` : null;
+  if (!imagePath) {
+    return res.status(400).json({ message: "Image upload failed." });
+  }
   const teacher = await Teacher.create({
     name,
     branch,
+    description,
     designation,
     email,
-    image,
+    image:imagePath,
     contactNumber,
   });
-  
+  await teacher.save();
   res.status(201).json(teacher);
 });
 
@@ -148,7 +169,7 @@ const createTeacher = asyncHandler(async (req, res) => {
 // @access  Private/Admin
 const updateTeacher = asyncHandler(async (req, res) => {
   const { id } = req.params;
-
+  const { name, branch, description, designation, email,contactNumber } = req.body;
   // 1. Find teacher by ID
   const teacher = await Teacher.findById(id);
 
@@ -157,11 +178,19 @@ const updateTeacher = asyncHandler(async (req, res) => {
     throw new Error("Teacher not found");
   }
 
-  // 2. Update teacher fields
-  const updatedTeacher = await Teacher.findByIdAndUpdate(id, req.body, {
-    new: true,           // return the updated document
-    runValidators: true, // ensure validation rules are respected
-  });
+  teacher.name=name ||teacher.name;
+  teacher.branch= branch ||teacher.branch;
+  teacher.description =description ||teacher.description;
+  teacher.designation=designation ||teacher.designation;
+  teacher.email=email||teacher.email;
+  teacher.contactNumber=contactNumber||teacher.contactNumber;
+
+  if (req.file) {
+  teacher.image = `uploads/${req.file.filename}`;
+  }
+
+   
+  const updatedTeacher = await teacher.save();
 
   res.status(200).json({
     message: "Teacher updated successfully",

@@ -7,13 +7,14 @@ const {registerUser,loginUser,currentUser}=require("../controllers/authControlle
 
 router.post("/register",registerUser)
 router.post("/login",loginUser)
-// const { protect ,adminOnly } = require("../middleware/authMiddleware");
+const { protect  } = require("../middleware/authMiddleware");
 
 
 // router.use(protect);
+
+router.get("/current",protect,currentUser)
 // router.use(adminOnly);
 
 
-router.get("/current",currentUser)
 
 module.exports=router;
