@@ -1,9 +1,7 @@
-const asynchHandler=require("express-async-handler");
-const { model } = require("mongoose");
+const asyncHandler = require("express-async-handler");
 const nodemailer = require('nodemailer');
 
-
-const sendEmail=(async (req, res) => {
+const sendEmail = asyncHandler(async (req, res) => {
   const { name, email, description } = req.body;
 
   if (!name || !email || !description) {
@@ -34,8 +32,8 @@ const sendEmail=(async (req, res) => {
     res.status(200).json({ message: 'Message sent successfully!' });
 
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: 'Failed to send message.' });
+    console.error('Email sending error:', err);
+    res.status(500).json({ message: 'Failed to send message. Please try again later.' });
   }
 });
 
