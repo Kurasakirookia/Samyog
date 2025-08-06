@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const { sendEmail } = require("../controllers/constactController");
-const { protect } = require("../middleware/authMiddleware");
-// Apply the middleware **only** to this route:
-router.post('/send', protect, sendEmail);
+
+// Contact form should be publicly accessible (no authentication required)
+router.post('/send', sendEmail);
 
 module.exports = router;
