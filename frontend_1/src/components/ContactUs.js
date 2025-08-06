@@ -22,46 +22,39 @@ const ContactUs = () => {
 
 
     const token = localStorage.getItem("token");
-    console.log("Token from localStorage:", localStorage.getItem("token"));
-    if (!token ) {
+    if (!token) {
       toast.error("You must be logged in to submit the form.");
       return;
     }
-   
 
     try {
       const authHeader = () => {
         const token = localStorage.getItem("token");
-        
         return { Authorization: `Bearer ${token}` };
       };
-    
 
-      // then use:
+      // Get current user info to verify authentication and get user details
       const res = await axios.get("http://localhost:5001/api/auth/current", {
         headers: authHeader(),
         withCredentials: false,
       });
-      console.log("Sending headers:", authHeader());
 
-      if (res.headers===undefined) console.log("headers are undefined");
-      
-      if(res.role==='admin'){
-      toast.error("admin cant send message")
-      return;
-      }
       const currentUser = res.data;
 
-        if (res.data.role === 'admin') {
-          toast.error("Admins can't send a message.");
-          return;
-        }
+      // Prevent admins from sending messages
+      if (currentUser.role === 'admin') {
+        toast.error("Admins can't send a message.");
+        return;
+      }
 
       // 2. Send message to backend to mail
       await axios.post("http://localhost:5001/api/contact/send", {
         name: currentUser.name,
         email: currentUser.email,
         description: formData.message,
+      }, {
+        headers: authHeader(),
+        withCredentials: false,
       });
 
       alert("Message sent successfully!");
